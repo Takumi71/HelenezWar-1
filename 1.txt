@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
+
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> lines = new ArrayList<String>();
+
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextLine()) {
+            String line = in.nextLine();
+            lines.add(line);
+        }
+
+        int num = 1;
+        for (String line : lines) {
+            System.out.println(String.format("%3d:\t%s", num++, line));
+        }
+        int j=0;
+        String str=null,strget=null;
+        while(j<=30){
+            
+            str = lines.get(j);
+            String[] strArray = str.split("");
+            for(String s : strArray) {
+                byte[] bytes = s.getBytes(StandardCharsets.US_ASCII);
+                //System.out.println("ASCII Numeric Value: "+bytes[0]);
+                if(bytes[0]<=109){
+                    bytes[0]+=13;
+                }
+                else{
+                    bytes[0]-=13;
+                }
+            	//System.out.println(s);
+            	char conv =(char)bytes[0];
+            	System.out.print(conv);
+            }
+            System.out.println();
+            j++;
+        }
+        //System.out.println(strget);
+    }
+}
